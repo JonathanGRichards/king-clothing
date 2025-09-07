@@ -5,8 +5,12 @@ import {
   createUserDocumentFromAuth,
 } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
-import Button from '../button/button.component';
-import './sign-in-form.styles.scss';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
+import {
+  SignInContainer,
+  ButtonsContainer,
+  Title,
+} from './sign-in-form.styles.jsx';
 
 const defaultFormFields = {
   email: '',
@@ -19,7 +23,6 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     const { user } = await signInWithGooglePopup();
-    
   };
 
   const resetFormFields = () => {
@@ -52,8 +55,8 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-in-container">
-      <h2>I already have an account</h2>
+    <SignInContainer>
+      <Title>I already have an account</Title>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -74,14 +77,14 @@ const SignInForm = () => {
           onChange={handleChange}
           required
         />
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button type="submit">Sign In</Button>
-          <Button buttonType="google" onClick={signInWithGoogle}>
+          <Button buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWithGoogle}>
             Google Sign In
           </Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 

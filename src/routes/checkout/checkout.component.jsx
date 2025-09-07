@@ -1,4 +1,10 @@
-import './checkout.styles.scss';
+import {
+  CheckoutContainer,
+  CheckoutHeader,
+  HeaderBlock,
+  CheckoutItems,
+  Total,
+} from './checkout.styles.jsx';
 import { Fragment } from 'react';
 import { useCart } from '../../context/cart.context';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
@@ -7,34 +13,31 @@ const Checkout = () => {
   const { cartItems, totalPrice } = useCart();
   return (
     <Fragment>
-      <div className="checkout-container">
-        <div className="checkout-header">
-          <div className="header-block">
+      <CheckoutContainer>
+        <CheckoutHeader>
+          <HeaderBlock>
             <span>Product</span>
-          </div>
-          <div className="header-block">
+          </HeaderBlock>
+          <HeaderBlock>
             <span>Description</span>
-          </div>
-          <div className="header-block">
+          </HeaderBlock>
+          <HeaderBlock>
             <span>Quantity</span>
-          </div>
-          <div className="header-block">
+          </HeaderBlock>
+          <HeaderBlock>
             <span>Price</span>
-          </div>
-          <div className="header-block">
+          </HeaderBlock>
+          <HeaderBlock>
             <span>Remove</span>
-          </div>
-        </div>
-        <div className="checkout-items">
+          </HeaderBlock>
+        </CheckoutHeader>
+        <CheckoutItems>
           {cartItems.map((cartItem) => (
             <CheckoutItem key={cartItem.id} cartItem={cartItem} />
           ))}
-        </div>
-        <div className="total">
-          Total: £
-          {totalPrice}
-        </div>
-      </div>
+        </CheckoutItems>
+        <Total>Total: £{totalPrice}</Total>
+      </CheckoutContainer>
     </Fragment>
   );
 };
